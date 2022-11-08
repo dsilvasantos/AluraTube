@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledBanner = styled.div`
-    img {
+    .banner-img {
         height : 100%;
          width: 100%;
         border-radius: 0%;
@@ -20,7 +20,7 @@ export function Banner(propriedade){
    return(
     <StyledBanner>
         <div className="banner">
-            <img src={`${propriedade.banner}`} />
+            <img className="banner-img"src={`${propriedade.banner}`} />
         </div> 
     </StyledBanner>
    )
