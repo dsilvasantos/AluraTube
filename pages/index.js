@@ -3,16 +3,17 @@ import styled from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import {StyledTimeline} from "../src/components/TimeLine";
+import {Banner} from "../src/components/Banner"
 
 function HomePage() {
-    const mensagem = "Olá !";
     return (
         <>
         <CSSReset></CSSReset>
         <div>
             <Menu></Menu>
-            <Header></Header>
+            <Header banner={config.banner}></Header>
             <TimeLine playlists={config.playlists}></TimeLine>
+            
         </div>
         </>
     )
@@ -39,12 +40,10 @@ const StyledHeader = styled.div`
    }
 `;
 
-function Header() {
+function Header(propriedade) {
     return (
         <StyledHeader>
-            {/* <img src="banner"/> */}
-
-
+        <Banner banner={propriedade.banner}></Banner>
             <section className="user-info">
                 <img src={`https://github.com/${config.github}.png`} />
                 <div>
