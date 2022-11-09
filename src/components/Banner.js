@@ -8,10 +8,9 @@ const StyledBanner = styled.div`
     }
 
    .banner{
-        margin-top: 40px;
         display: flex;
         width: 100%;
-        height: 300px;
+        height: 230px;
         padding: 16px 32px;
    }
 `;

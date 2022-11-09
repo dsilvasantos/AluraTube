@@ -1,18 +1,22 @@
 import config from "../config.json";
 import styled from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
-import Menu from "../src/components/Menu";
+import Menu from "../src/components/Menu/Menu";
 import {StyledTimeline} from "../src/components/TimeLine";
 import {Banner} from "../src/components/Banner"
+import React from "react";
 
 function HomePage() {
+
+    const [valorDoFiltro,setValorDoFiltro] = React.useState("");
+
     return (
         <>
         <CSSReset></CSSReset>
         <div>
-            <Menu></Menu>
+            <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro}></Menu>
             <Header banner={config.banner}></Header>
-            <TimeLine playlists={config.playlists}></TimeLine>
+            <TimeLine pesquisa={valorDoFiltro} playlists={config.playlists}></TimeLine>
             
         </div>
         </>
@@ -31,7 +35,6 @@ const StyledHeader = styled.div`
     }
 
    .user-info{
-        margin-top: 50px;
         display: flex;
         align-items: center;
         width: 100%;
@@ -63,13 +66,14 @@ function TimeLine(propriedade) {
             {playListNames.map(function (playListName) {
                 const videos = propriedade.playlists[playListName];
                 return (
-                    <section>
+                    <section key={playListName}>
                         <h2>{playListName}</h2>
                         <div>
-                            {
-                                videos.map(function (video) {
+                            {videos.filter((video) => {
+                                return video.title.toLowerCase().includes(propriedade.pesquisa.toLowerCase())
+                            }).map(function (video) {
                                     return (
-                                        <a href={video.url}>
+                                        <a key={video.url} href={video.url}>
                                             <img src={video.thumb} />
                                             <span>
                                                 {video.title}
